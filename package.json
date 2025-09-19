@@ -1,11 +1,14 @@
 {
-  "name": "chronicle",
-  "displayName": "Chronicle",
-  "description": "Chronicle your code journey with smart commit reminders",
-  "version": "0.0.2",
+  "name": "dev-chronicle",
+  "displayName": "DevChronicle",
+  "description": "DevChronicle your code journey with smart commit reminders",
+  "version": "0.0.1",
+  "icon": "/images/icon.png",
   "engines": {
     "vscode": "^1.74.0"
   },
+  "publisher": "little-prince",
+  "license": "ISC",
   "categories": [
     "Other"
   ],
@@ -25,22 +28,22 @@
       {
         "command": "chronicle.commitNow",
         "title": "📚 Commit Now",
-        "category": "Chronicle"
+        "category": "DevChronicle"
       },
       {
         "command": "chronicle.openSettings",
         "title": "📚 Open Settings",
-        "category": "Chronicle"
+        "category": "DevChronicle"
       },
       {
         "command": "chronicle.pauseAutoCommit",
         "title": "⏸ Pause Auto-Commit",
-        "category": "Chronicle"
+        "category": "DevChronicle"
       },
       {
         "command": "chronicle.resumeAutoCommit",
         "title": "▶️ Resume Auto-Commit",
-        "category": "Chronicle"
+        "category": "DevChronicle"
       }
     ],
     "menus": {

@@ -67,20 +67,20 @@ async function autoCommitAndPush(workspacePath: string) {
 
         const conflicts = await execAsync('git diff --name-only --diff-filter=U', { cwd: workspacePath });
         if (conflicts.stdout.trim()) {
-            vscode.window.showWarningMessage('📚 Chronicle: Merge conflicts detected. Auto-commit skipped.');
+            vscode.window.showWarningMessage('📚 DevChronicle: Merge conflicts detected. Auto-commit skipped.');
             return;
         }
 
         let message = await generateCommitMessage(workspacePath);
 
         const userMessage = await vscode.window.showInputBox({
-            prompt: '📚 Chronicle: Commit message',
+            prompt: '📚 DevChronicle: Commit message',
             value: message,
             ignoreFocusOut: true
         });
 
         if (userMessage === undefined) {
-            vscode.window.showInformationMessage('📚 Chronicle: Commit canceled.');
+            vscode.window.showInformationMessage('📚 DevChronicle: Commit canceled.');
             return;
         }
         message = userMessage;
@@ -98,18 +98,18 @@ async function autoCommitAndPush(workspacePath: string) {
         sessionFilesCommitted += changedFiles.length;
 
         vscode.window.showInformationMessage(
-            `📚 Chronicle: Committed & pushed! Commits today: ${sessionCommits}, Files: ${sessionFilesCommitted}`
+            `📚 DevChronicle: Committed & pushed! Commits today: ${sessionCommits}, Files: ${sessionFilesCommitted}`
         );
 
     } catch (err) {
-        vscode.window.showErrorMessage(`📚 Chronicle: Commit failed - ${err}`);
+        vscode.window.showErrorMessage(`📚 DevChronicle: Commit failed - ${err}`);
     }
 }
 
 async function manualCommit() {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders) {
-        vscode.window.showErrorMessage('📚 Chronicle: No workspace folder found.');
+        vscode.window.showErrorMessage('📚 DevChronicle: No workspace folder found.');
         return;
     }
     const workspacePath = workspaceFolders[0].uri.fsPath;
@@ -118,12 +118,12 @@ async function manualCommit() {
 
 function pauseAutoCommit() {
     pausedUntil = Date.now() + 60 * 60 * 1000;
-    vscode.window.showInformationMessage('📚 Chronicle: Auto-commit paused for 1 hour.');
+    vscode.window.showInformationMessage('📚 DevChronicle: Auto-commit paused for 1 hour.');
 }
 
 function resumeAutoCommit() {
     pausedUntil = undefined;
-    vscode.window.showInformationMessage('📚 Chronicle: Auto-commit resumed.');
+    vscode.window.showInformationMessage('📚 DevChronicle: Auto-commit resumed.');
 }
 
 // Generate commit message based on file types
