@@ -1,0 +1,120 @@
+{
+  "name": "chronicle",
+  "displayName": "Chronicle",
+  "description": "Chronicle your code journey with smart commit reminders",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "reminder",
+    "productivity",
+    "workflow"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "chronicle.commitNow",
+        "title": "📚 Commit Now",
+        "category": "Chronicle"
+      },
+      {
+        "command": "chronicle.openSettings",
+        "title": "📚 Open Settings",
+        "category": "Chronicle"
+      },
+      {
+        "command": "chronicle.pauseAutoCommit",
+        "title": "⏸ Pause Auto-Commit",
+        "category": "Chronicle"
+      },
+      {
+        "command": "chronicle.resumeAutoCommit",
+        "title": "▶️ Resume Auto-Commit",
+        "category": "Chronicle"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "chronicle.commitNow", "when": "workspaceFolderCount != 0" },
+        { "command": "chronicle.openSettings" },
+        { "command": "chronicle.pauseAutoCommit" },
+        { "command": "chronicle.resumeAutoCommit" }
+      ]
+    },
+    "configuration": {
+      "title": "Chronicle",
+      "properties": {
+        "chronicle.autoCommit": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically commit changes on save or idle"
+        },
+        "chronicle.autoPush": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically push changes after committing"
+        },
+        "chronicle.idleMinutes": {
+          "type": "number",
+          "default": 2,
+          "minimum": 1,
+          "maximum": 30,
+          "description": "Idle time (in minutes) before auto-commit triggers"
+        },
+        "chronicle.fileExtensions": {
+          "type": "array",
+          "default": [".js",".ts",".jsx",".tsx",".css",".scss",".html"],
+          "description": "File types that trigger auto-commit"
+        },
+        "chronicle.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications for commits and reminders"
+        },
+        "chronicle.autoGenerateMessages": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically generate commit messages based on file types"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MatthewTheCoder1218/chronicle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MatthewTheCoder1218/chronicle/issues"
+  },
+  "homepage": "https://github.com/MatthewTheCoder1218/chronicle#readme",
+  "author": "Little Prince"
+}
