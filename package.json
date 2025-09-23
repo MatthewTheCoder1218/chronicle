@@ -3,7 +3,7 @@
   "displayName": "DevChronicle",
   "description": "DevChronicle your code journey with smart commit reminders",
   "version": "0.0.1",
-  "icon": "/images/icon.png",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.74.0"
   },

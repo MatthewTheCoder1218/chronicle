@@ -1,11 +1,11 @@
-# 📚 Chronicles
+# 📚 DevChronicle
 
 *Track your code journey with smart commit reminders.*
 
 [![VSCode Marketplace](https://img.shields.io/badge/VSCode-Chronicles-blue)](https://marketplace.visualstudio.com/)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-**Chronicles helps you auto-commit your code on file save, idle, and track your progress.**
+**DevChronicle helps you auto-commit your code on file save, idle, and track your progress.**
 
 ## 🎯 Features
 
@@ -20,7 +20,7 @@
 
 1. Open **VSCode**
 2. Go to **Extensions** (Ctrl+Shift+X)
-3. Search for `Chronicles` and install it
+3. Search for `DevChronicle` and install it
 4. Configure settings in `settings.json` or via command palette
 
 ## 📖 Usage
@@ -31,10 +31,10 @@
   * On idle (2–5 min configurable)
 * Commands:
 
-  * `Chronicle: Commit Now`
-  * `Chronicle: Pause Auto-Commit`
-  * `Chronicle: Resume Auto-Commit`
-  * `Chronicle: Open Settings`
+  * `DevChronicle: Commit Now`
+  * `DevChronicle: Pause Auto-Commit`
+  * `DevChronicle: Resume Auto-Commit`
+  * `DevChronicle: Open Settings`
 
 > Auto-commit will only run if the workspace is a git repository.
 
