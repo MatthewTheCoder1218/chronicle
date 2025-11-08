@@ -32,10 +32,10 @@ Instead of generic messages like "update code", get meaningful ones like:
 - `refactor(api): optimize database queries`
 
 ### Getting Your Free API Key
-1. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+1. Go to [console.groq.com/keys](https://console.groq.com/keys)
 2. Click "New token"
 3. Name it something like "DevChronicle"
-4. Copy the token (starts with `gk_`)
+4. Copy the token (starts with `gsk_`)
 5. Run `DevChronicle: Set Groq API Key` in VS Code
 6. Paste your token - it's stored securely! 🔒
 

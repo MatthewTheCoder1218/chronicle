@@ -11,9 +11,15 @@ let pausedUntil: number | undefined;
 let sessionCommits = 0;
 let sessionFilesCommitted = 0;
 let lastSavedFile: string | undefined;
+let statusBar: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Chronicle is active!');
+
+    // STATUS BAR: EXTENSION NAME + STATS
+    statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+    updateStatusBar();
+    statusBar.show();
 
     const saveDisposable = vscode.workspace.onDidSaveTextDocument(handleFileSave);
     const changeDisposable = vscode.window.onDidChangeActiveTextEditor((editor) => {
@@ -28,10 +34,16 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('chronicle.resumeAutoCommit', resumeAutoCommit),
         vscode.commands.registerCommand('chronicle.openSettings', () => {
             vscode.commands.executeCommand('workbench.action.openSettings', 'chronicle');
-        })
+        }),
+        statusBar,
+        saveDisposable,
+        changeDisposable
     );
+}
 
-    context.subscriptions.push(saveDisposable, changeDisposable);
+function updateStatusBar() {
+    statusBar.text = `$(git-commit) DevChronicle • Commits: ${sessionCommits} • Files: ${sessionFilesCommitted}`;
+    statusBar.tooltip = 'Chronicle: AI-powered auto-commits';
 }
 
 async function setGroqAPIKey(context: vscode.ExtensionContext) {
@@ -118,6 +130,7 @@ async function autoCommitAndPush(workspacePath: string, context: vscode.Extensio
             .stdout.trim().split('\n').filter(f => f);
         sessionFilesCommitted += files.length;
 
+        updateStatusBar();
         vscode.window.showInformationMessage(
             `Committed${push ? ' & pushed' : ''}! Today: ${sessionCommits} commits, ${sessionFilesCommitted} files`
         );
@@ -153,9 +166,6 @@ async function callGroqAPI(apiKey: string, diff: string): Promise<string | null>
             let data = '';
             res.on('data', d => data += d);
             res.on('end', () => {
-                console.log('Groq Status:', res.statusCode);
-                console.log('Groq Raw:', data);
-
                 if (res.statusCode !== 200) {
                     resolve(null);
                     return;
